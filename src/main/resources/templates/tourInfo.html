@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о туре</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body  style="background-color: #1f76b5;">
+<div class="container mt-2 mb-4">
+    <h1 style="font-style: oblique; font-size: 30px; text-align: center;">Информация о туре</h1>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<div class="container">
+    <ul class="list-group list-group-flush mt-2">
+        <li class="list-group-item" th:value="${tourCity}">
+            Город: <span th:text="${tourCity.getName()}"></span>
+        </li>
+        <li class="list-group-item" th:value="${hotelName}">
+            Название отеля: <span th:text="${hotelName}"></span>
+        </li>
+        <li class="list-group-item" th:value="${typeOfFood}">
+            Тип питания: <span th:text="${typeOfFood}"></span>
+        </li>
+        <li class="list-group-item" th:value="${typeOfRoom}">
+            Тип номера: <span th:text="${typeOfRoom}"></span>
+        </li>
+        <li class="list-group-item" th:value="${numOfAdults}">
+            Количество взрослых: <span th:text="${numOfAdults}"></span>
+        </li>
+        <li class="list-group-item" th:value="${numOfChildren}">
+            Количество детей: <span th:text="${numOfChildren}"></span>
+        </li>
+        <li class="list-group-item" th:value="${oneNightPrice}">
+            Цена за ночь: <span th:text="${oneNightPrice}"></span>
+        </li>
+        </ul>
+</div>
+<div class="container mt-3">
+    <span style="color: White;">  Для этого тура доступны дополнительные услуги: <span th:text="${addServices}"></span></span>
+</div>
+<div class="container mt-3">
+    <form class="d-flex" method="post"  th:action="@{/stepOneAddService}">
+        <button class="btn btn-primary" type="submit"
+                style="background-color:yellow; color:black;" name="goToStepOne" th:value="${id_tour}">
+            Перейти к бронированию
+        </button>
+    </form>
+</div>
+</body>
+</html>

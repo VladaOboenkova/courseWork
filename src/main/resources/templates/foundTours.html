@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Результат поиска туров</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<div class="constructor">
+    <form class="d-flex" method="post"  th:action="@{/tourInfo}">
+    <table class="table">
+        <tr style="background-color: #106fb3;">
+            <th scope="col">Город</th>
+            <th scope="col">Название отеля</th>
+            <th scope="col">Количество взрослых</th>
+            <th scope="col">Количество детей</th>
+            <th scope="col">Тип питания</th>
+            <th scope="col">Тип номера</th>
+            <th scope="col">Цена за ночь</th>
+            <th scope="col"></th>
+        </tr>
+        <tr th:each="tour : ${foundTours}">
+            <td th:text="${tour.id_hotel.getId_city().getName()}"></td>
+            <td th:text="${tour.id_hotel.getName()}"></td>
+            <td th:text="${tour.getNum_of_adults()}"></td>
+            <td th:text="${tour.getNum_of_children()}"></td>
+            <td th:text="${tour.getId_type_of_food().getType_of_food()}"></td>
+            <td th:text="${tour.getId_type_of_room().getType_of_room()}"></td>
+            <td th:text="${tour.getOne_night_price}"></td>
+            <td>
+                    <button class="btn btn-primary" type="submit"
+                            style="background-color:yellow; color:black;" name="tour" th:value="${tour.id}">
+                        Посмотреть
+                    </button>
+                </td>
+        </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
+

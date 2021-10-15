@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор страховки</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-2 mb-4">
+    <h1 style="font-style: oblique; font-size: 30px; text-align: center;">Выбор страхования для туристов</h1>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<div class="container mt-2">
+    <p style="font-weight: bold;">*** Перед выбором ознакомьтесь с вариантами страхования.</p>
+</div>
+<form  class="d-flex flex-column" method="post" th:action="@{/stepFourOrderForm}" >
+<table class="table">
+    <tr style="background-color: #106fb3;">
+        <th scope="col"></th>
+        <th scope="col">Страховка</th>
+    <tr th:each="tourist, itemStat : ${touristsForOrder}">
+        <td>Турист <span th:utext="${itemStat.count}"></span></td>
+        <td>
+            <select class="form-select me-5" th:field="*{insuranceForm.insurance__${itemStat.count}__}">
+                <option th:each="insurance : ${allInsurance}"
+                        th:value="${insurance.id}"
+                        th:utext="${insurance.name}"></option>
+            </select>
+        </td>
+    </tr>
+</table>
+    <div class="container mt-2 mb-3" style="text-align: center;">
+        <button class="btn btn-primary" type="submit" name="goToStepFour" th:value="${tour.id}"
+                style="background-color:yellow; color:black;">
+            Далее
+        </button>
+    </div>
+</form>
+<table class="table mt-3">
+    <tr style="background-color: #106fb3;">
+        <th scope="col">Название</th>
+        <th scope="col">Информация по опциям</th>
+        <th scope="col">Стоимость в день</th>
+    </tr>
+    <tr th:each="infoItem : ${insInfo}">
+        <td th:utext="${infoItem.key.name}"></td>
+        <td th:utext="${infoItem.value}"></td>
+        <td th:utext="${infoItem.key.one_day_price}"></td>
+    </tr>
+</table>
+</body>
+</html>
